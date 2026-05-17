@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lifesaver</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#F8F4EE;
+    color:#123B63;
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    width:100%;
+
+    position:fixed;
+    top:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 8%;
+
+    background:rgba(248,244,238,0.94);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(18,59,99,0.08);
+
+    z-index:1000;
+}
+
+.logo{
+    font-family:'Playfair Display', serif;
+    font-size:2rem;
+    font-weight:700;
+    color:#123B63;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#123B63;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    opacity:0.75;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+
+    padding:180px 8% 100px;
+}
+
+.hero-container{
+    width:100%;
+
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:70px;
+    align-items:center;
+}
+
+/* ================= LEFT ================= */
+
+.hero-left h1{
+    font-family:'Playfair Display', serif;
+    font-size:6rem;
+    line-height:0.95;
+    margin-bottom:18px;
+    color:#123B63;
+}
+
+.slogan{
+    font-size:1.3rem;
+    color:#123B63;
+    margin-bottom:28px;
+    font-weight:500;
+}
+
+.hero-left p{
+    font-size:1.15rem;
+    line-height:1.9;
+    color:#123B63;
+    max-width:650px;
+    margin-bottom:45px;
+}
+
+/* ================= BUTTON GRID ================= */
+
+.button-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.page-btn{
+    border:none;
+
+    padding:34px;
+
+    border-radius:30px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.06);
+}
+
+.page-btn:hover{
+    transform:translateY(-6px);
+}
+
+.page-btn h3{
+    font-size:1.5rem;
+    margin-bottom:12px;
+    color:#123B63;
+}
+
+.page-btn p{
+    line-height:1.7;
+    color:#123B63;
+}
+
+/* ================= CREAM SHADES ================= */
+
+.finance{
+    background:#EFE1CF;
+}
+
+.health{
+    background:#F5E9D9;
+}
+
+.recipes{
+    background:#F3E4D3;
+}
+
+.calculators{
+    background:#FAEEDF;
+}
+
+/* ================= RIGHT PANEL ================= */
+
+.hero-right{
+    display:flex;
+    justify-content:center;
+}
+
+.preview-panel{
+    width:100%;
+    max-width:520px;
+
+    background:white;
+
+    border-radius:36px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.08);
+}
+
+.preview-panel h2{
+    font-family:'Playfair Display', serif;
+    font-size:2rem;
+    margin-bottom:25px;
+    color:#123B63;
+}
+
+.preview-box{
+    background:#F7F4EF;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    margin-bottom:18px;
+}
+
+.preview-box strong{
+    display:block;
+    margin-bottom:10px;
+    color:#123B63;
+}
+
+.preview-box p{
+    line-height:1.7;
+    color:#123B63;
+}
+
+/* ================= FEATURES ================= */
+
+.features{
+    padding:100px 8%;
+}
+
+.features h2{
+    font-family:'Playfair Display', serif;
+    font-size:4rem;
+    margin-bottom:18px;
+    color:#123B63;
+}
+
+.features p{
+    max-width:800px;
+    line-height:1.9;
+    color:#123B63;
+    margin-bottom:45px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.feature-card{
+    background:white;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.06);
+}
+
+.feature-card h3{
+    margin-bottom:14px;
+    font-size:1.5rem;
+    color:#123B63;
+}
+
+.feature-card p{
+    line-height:1.8;
+    color:#123B63;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:50px;
+    text-align:center;
+    color:#123B63;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+    .hero-container{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero-left h1{
+        font-size:4rem;
+    }
+
+    .button-grid{
+        grid-template-columns:1fr;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<div class="logo">
+Lifesaver
+</div>
+
+<div class="nav-links">
+
+<a href="finance.html">Finance</a>
+<a href="health.html">Health</a>
+<a href="recipes.html">Recipes</a>
+<a href="calculators.html">Calculators</a>
+
+</div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="hero-container">
+
+<!-- ================= LEFT ================= -->
+
+<div class="hero-left">
+
+<h1>
+Lifesaver
+</h1>
+
+<div class="slogan">
+Time is valuable
+</div>
+
+<p>
+AI-powered planning tools for finance,
+health, recipes, calculators,
+and modern productivity —
+beautifully designed for simplicity.
+</p>
+
+<div class="button-grid">
+
+<!-- ================= FINANCE ================= -->
+
+<button class="page-btn finance"
+onclick="window.location.href='finance.html'">
+
+<h3>
+Business & Finance
+</h3>
+
+<p>
+Business planning, investing,
+debt analysis, budgeting,
+and savings systems.
+</p>
+
+</button>
+
+<!-- ================= HEALTH ================= -->
+
+<button class="page-btn health"
+onclick="window.location.href='health.html'">
+
+<h3>
+Health & Fitness
+</h3>
+
+<p>
+Workout plans, calorie systems,
+weight tracking,
+and wellness optimisation.
+</p>
+
+</button>
+
+<!-- ================= RECIPES ================= -->
+
+<button class="page-btn recipes"
+onclick="window.location.href='recipes.html'">
+
+<h3>
+Recipes
+</h3>
+
+<p>
+Meal planning, healthy recipes,
+quick dinners,
+and personalised food ideas.
+</p>
+
+</button>
+
+<!-- ================= CALCULATORS ================= -->
+
+<button class="page-btn calculators"
+onclick="window.location.href='calculators.html'">
+
+<h3>
+Calculators
+</h3>
+
+<p>
+Mortgage tools,
+index fund forecasts,
+debt interest systems,
+and finance calculators.
+</p>
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= RIGHT ================= -->
+
+<div class="hero-right">
+
+<div class="preview-panel">
+
+<h2>
+AI Planning Preview
+</h2>
+
+<div class="preview-box">
+
+<strong>
+Index Fund Forecast
+</strong>
+
+<p>
+Estimate long-term investment growth
+with compound returns and monthly contributions.
+</p>
+
+</div>
+
+<div class="preview-box">
+
+<strong>
+Debt Interest Analysis
+</strong>
+
+<p>
+Compare interest costs,
+monthly repayments,
+and long-term debt strategies.
+</p>
+
+</div>
+
+<div class="preview-box">
+
+<strong>
+Startup Planner
+</strong>
+
+<p>
+Generate business launch plans,
+productivity structures,
+and financial guidance.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+<h2>
+Designed Around Simplicity
+</h2>
+
+<p>
+Lifesaver combines elegant design,
+AI systems,
+and practical everyday tools
+into one modern experience.
+</p>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<h3>
+AI Powered Planning
+</h3>
+
+<p>
+Generate personalised plans,
+forecasts,
+and recommendations instantly.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>
+Modern Experience
+</h3>
+
+<p>
+Inspired by premium platforms
+with clean layouts
+and smooth interactions.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>
+Smart Everyday Tools
+</h3>
+
+<p>
+Finance calculators,
+health systems,
+business guidance,
+and more.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Lifesaver
+</footer>
+
+</body>
+</html>
