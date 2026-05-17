@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lifesaver — Business & Finance</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#F8F4EE;
+    color:#123B63;
+    font-family:'Inter', sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 8%;
+
+    background:rgba(248,244,238,0.94);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(18,59,99,0.08);
+
+    z-index:1000;
+}
+
+.logo{
+    font-family:'Playfair Display', serif;
+    font-size:2rem;
+    font-weight:700;
+}
+
+.home-btn{
+    text-decoration:none;
+
+    background:white;
+
+    color:#123B63;
+
+    padding:12px 22px;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    padding:90px 8% 45px;
+}
+
+.header h1{
+    font-family:'Playfair Display', serif;
+    font-size:5rem;
+    margin-bottom:16px;
+}
+
+.header p{
+    max-width:850px;
+    line-height:1.9;
+    font-size:1.08rem;
+}
+
+/* ================= BUTTONS ================= */
+
+.top-buttons{
+    padding:0 8% 55px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.top-buttons button{
+    border:none;
+
+    background:white;
+
+    color:#123B63;
+
+    padding:16px 24px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.06);
+
+    transition:0.3s;
+}
+
+.top-buttons button:hover{
+    transform:translateY(-4px);
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:0 8% 100px;
+}
+
+.card{
+    background:white;
+
+    border-radius:36px;
+
+    padding:40px;
+
+    margin-bottom:40px;
+
+    box-shadow:
+    0 12px 40px rgba(0,0,0,0.06);
+}
+
+.card h2{
+    font-family:'Playfair Display', serif;
+    font-size:2.4rem;
+    margin-bottom:12px;
+}
+
+.card p{
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+/* ================= INPUTS ================= */
+
+.input-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#F5F2ED;
+
+    font-size:1rem;
+
+    color:#123B63;
+}
+
+/* ================= BUTTON ================= */
+
+.generate-btn{
+    border:none;
+
+    background:#123B63;
+
+    color:white;
+
+    padding:16px 28px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+}
+
+/* ================= RESULT ================= */
+
+.result{
+    margin-top:28px;
+
+    background:#F7F4EF;
+
+    border-radius:24px;
+
+    padding:28px;
+
+    line-height:1.9;
+
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<div class="logo">
+Lifesaver
+</div>
+
+<a href="index.html" class="home-btn">
+Home
+</a>
+
+</nav>
+
+<!-- ================= HEADER ================= -->
+
+<section class="header">
+
+<h1>
+Business & Finance
+</h1>
+
+<p>
+Modern business tools,
+financial forecasting,
+startup planning,
+pricing systems,
+and growth analysis.
+</p>
+
+</section>
+
+<!-- ================= BUTTONS ================= -->
+
+<div class="top-buttons">
+
+<button onclick="document.getElementById('startup').scrollIntoView()">
+Startup Planner
+</button>
+
+<button onclick="document.getElementById('pricing').scrollIntoView()">
+Product Pricing
+</button>
+
+<button onclick="document.getElementById('profit').scrollIntoView()">
+Profit Forecast
+</button>
+
+<button onclick="document.getElementById('breakEven').scrollIntoView()">
+Break Even
+</button>
+
+<button onclick="document.getElementById('marketing').scrollIntoView()">
+Marketing Budget
+</button>
+
+<button onclick="document.getElementById('sales').scrollIntoView()">
+Sales Forecast
+</button>
+
+</div>
+
+<!-- ================= MAIN SECTION ================= -->
+
+<section class="section">
+
+<!-- ================= STARTUP ================= -->
+
+<div class="card" id="startup">
+
+<h2>
+Startup Planner
+</h2>
+
+<p>
+Estimate launch budgets and planning.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Business Idea</label>
+<input type="text" id="businessIdea">
+</div>
+
+<div class="input-group">
+<label>Startup Budget (£)</label>
+<input type="number" id="startupBudget">
+</div>
+
+<div class="input-group">
+<label>Hours Per Week</label>
+<input type="number" id="startupHours">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateStartup()">
+
+Generate
+
+</button>
+
+<div class="result" id="startupResult"></div>
+
+</div>
+
+<!-- ================= PRODUCT PRICING ================= -->
+
+<div class="card" id="pricing">
+
+<h2>
+Product Pricing
+</h2>
+
+<p>
+Estimate selling prices for products.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Product Cost (£)</label>
+<input type="number" id="productCost">
+</div>
+
+<div class="input-group">
+<label>Shipping Cost (£)</label>
+<input type="number" id="shippingCost">
+</div>
+
+<div class="input-group">
+<label>Platform Fee (%)</label>
+<input type="number" id="platformFee">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generatePricing()">
+
+Generate
+
+</button>
+
+<div class="result" id="pricingResult"></div>
+
+</div>
+
+<!-- ================= PROFIT ================= -->
+
+<div class="card" id="profit">
+
+<h2>
+Profit Forecast
+</h2>
+
+<p>
+Estimate monthly profit projections.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Monthly Revenue (£)</label>
+<input type="number" id="revenue">
+</div>
+
+<div class="input-group">
+<label>Monthly Expenses (£)</label>
+<input type="number" id="profitExpenses">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateProfit()">
+
+Generate
+
+</button>
+
+<div class="result" id="profitResult"></div>
+
+</div>
+
+<!-- ================= BREAK EVEN ================= -->
+
+<div class="card" id="breakEven">
+
+<h2>
+Break Even Calculator
+</h2>
+
+<p>
+Estimate how many sales are needed
+to recover costs.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Fixed Costs (£)</label>
+<input type="number" id="fixedCosts">
+</div>
+
+<div class="input-group">
+<label>Profit Per Sale (£)</label>
+<input type="number" id="profitPerSale">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateBreakEven()">
+
+Generate
+
+</button>
+
+<div class="result" id="breakEvenResult"></div>
+
+</div>
+
+<!-- ================= MARKETING ================= -->
+
+<div class="card" id="marketing">
+
+<h2>
+Marketing Budget
+</h2>
+
+<p>
+Estimate recommended marketing spend.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Monthly Revenue (£)</label>
+<input type="number" id="marketingRevenue">
+</div>
+
+<div class="input-group">
+<label>Growth Goal (%)</label>
+<input type="number" id="growthGoal">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateMarketing()">
+
+Generate
+
+</button>
+
+<div class="result" id="marketingResult"></div>
+
+</div>
+
+<!-- ================= SALES ================= -->
+
+<div class="card" id="sales">
+
+<h2>
+Sales Forecast
+</h2>
+
+<p>
+Estimate future revenue growth.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Current Monthly Sales (£)</label>
+<input type="number" id="currentSales">
+</div>
+
+<div class="input-group">
+<label>Growth Rate (%)</label>
+<input type="number" id="salesGrowth">
+</div>
+
+<div class="input-group">
+<label>Months</label>
+<input type="number" id="salesMonths">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateSales()">
+
+Generate
+
+</button>
+
+<div class="result" id="salesResult"></div>
+
+</div>
+
+</section>
+
+<script>
+
+/* ================= STARTUP ================= */
+
+function generateStartup(){
+
+let idea =
+document.getElementById("businessIdea").value;
+
+let budget =
+document.getElementById("startupBudget").value;
+
+let hours =
+document.getElementById("startupHours").value;
+
+let result =
+document.getElementById("startupResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Startup Plan Generated</strong>
+
+<br><br>
+
+Business:
+<strong>${idea}</strong>
+
+<br><br>
+
+Estimated startup budget:
+<strong>£${budget}</strong>
+
+<br><br>
+
+Recommended work:
+<strong>${hours} hours weekly</strong>
+`;
+
+}
+
+/* ================= PRODUCT PRICING ================= */
+
+function generatePricing(){
+
+let cost =
+Number(document.getElementById("productCost").value);
+
+let shipping =
+Number(document.getElementById("shippingCost").value);
+
+let fee =
+Number(document.getElementById("platformFee").value);
+
+let total =
+(cost + shipping) * (1 + fee/100) * 1.5;
+
+let result =
+document.getElementById("pricingResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Suggested selling price:</strong>
+
+<br><br>
+
+£${total.toFixed(2)}
+`;
+
+}
+
+/* ================= PROFIT ================= */
+
+function generateProfit(){
+
+let revenue =
+Number(document.getElementById("revenue").value);
+
+let expenses =
+Number(document.getElementById("profitExpenses").value);
+
+let profit =
+revenue - expenses;
+
+let result =
+document.getElementById("profitResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Estimated monthly profit:</strong>
+
+<br><br>
+
+£${profit.toFixed(2)}
+`;
+
+}
+
+/* ================= BREAK EVEN ================= */
+
+function generateBreakEven(){
+
+let costs =
+Number(document.getElementById("fixedCosts").value);
+
+let sale =
+Number(document.getElementById("profitPerSale").value);
+
+let breakEven =
+Math.ceil(costs / sale);
+
+let result =
+document.getElementById("breakEvenResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Estimated sales needed:</strong>
+
+<br><br>
+
+${breakEven} sales
+`;
+
+}
+
+/* ================= MARKETING ================= */
+
+function generateMarketing(){
+
+let revenue =
+Number(document.getElementById("marketingRevenue").value);
+
+let growth =
+Number(document.getElementById("growthGoal").value);
+
+let budget =
+(revenue * 0.1) + (growth * 5);
+
+let result =
+document.getElementById("marketingResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Suggested marketing budget:</strong>
+
+<br><br>
+
+£${budget.toFixed(2)} monthly
+`;
+
+}
+
+/* ================= SALES ================= */
+
+function generateSales(){
+
+let current =
+Number(document.getElementById("currentSales").value);
+
+let growth =
+Number(document.getElementById("salesGrowth").value);
+
+let months =
+Number(document.getElementById("salesMonths").value);
+
+let total =
+current * Math.pow((1 + growth/100), months);
+
+let result =
+document.getElementById("salesResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Estimated future monthly sales:</strong>
+
+<br><br>
+
+£${total.toFixed(2)}
+`;
+
+}
+
+</script>
+
+</body>
+</html>
