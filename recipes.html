@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lifesaver — Recipes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#F8F4EE;
+    color:#123B63;
+    font-family:'Inter', sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 8%;
+
+    background:rgba(248,244,238,0.95);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(18,59,99,0.08);
+
+    z-index:1000;
+}
+
+.logo{
+    font-family:'Playfair Display', serif;
+    font-size:2rem;
+    font-weight:700;
+}
+
+.home-btn{
+    text-decoration:none;
+
+    background:white;
+
+    color:#123B63;
+
+    padding:12px 22px;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    padding:90px 8% 45px;
+}
+
+.header h1{
+    font-family:'Playfair Display', serif;
+    font-size:5rem;
+    margin-bottom:16px;
+}
+
+.header p{
+    max-width:850px;
+    line-height:1.9;
+    font-size:1.08rem;
+}
+
+/* ================= BUTTONS ================= */
+
+.top-buttons{
+    padding:0 8% 55px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.top-buttons button{
+    border:none;
+
+    background:white;
+
+    color:#123B63;
+
+    padding:16px 24px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.06);
+
+    transition:0.3s;
+}
+
+.top-buttons button:hover{
+    transform:translateY(-4px);
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:0 8% 100px;
+}
+
+.card{
+    background:white;
+
+    border-radius:36px;
+
+    padding:40px;
+
+    margin-bottom:40px;
+
+    box-shadow:
+    0 12px 40px rgba(0,0,0,0.06);
+}
+
+.card h2{
+    font-family:'Playfair Display', serif;
+    font-size:2.4rem;
+    margin-bottom:12px;
+}
+
+.card p{
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+/* ================= INPUTS ================= */
+
+.input-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#F5F2ED;
+
+    font-size:1rem;
+
+    color:#123B63;
+
+    font-family:'Inter', sans-serif;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+/* ================= BUTTON ================= */
+
+.generate-btn{
+    border:none;
+
+    background:#123B63;
+
+    color:white;
+
+    padding:16px 28px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+}
+
+/* ================= RESULT ================= */
+
+.result{
+    margin-top:28px;
+
+    background:#F7F4EF;
+
+    border-radius:24px;
+
+    padding:28px;
+
+    line-height:1.9;
+
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<div class="logo">
+Lifesaver
+</div>
+
+<a href="index.html" class="home-btn">
+Home
+</a>
+
+</nav>
+
+<!-- ================= HEADER ================= -->
+
+<section class="header">
+
+<h1>
+Recipes
+</h1>
+
+<p>
+AI-powered recipe generation
+based on your ingredients,
+goals,
+diet preferences,
+cooking time,
+and calorie targets.
+</p>
+
+</section>
+
+<!-- ================= BUTTONS ================= -->
+
+<div class="top-buttons">
+
+<button onclick="document.getElementById('meal').scrollIntoView()">
+Meal Generator
+</button>
+
+<button onclick="document.getElementById('healthy').scrollIntoView()">
+Healthy Recipes
+</button>
+
+<button onclick="document.getElementById('highprotein').scrollIntoView()">
+High Protein
+</button>
+
+<button onclick="document.getElementById('quick').scrollIntoView()">
+Quick Meals
+</button>
+
+<button onclick="document.getElementById('budget').scrollIntoView()">
+Budget Meals
+</button>
+
+<button onclick="document.getElementById('dessert').scrollIntoView()">
+Desserts
+</button>
+
+</div>
+
+<!-- ================= MAIN SECTION ================= -->
+
+<section class="section">
+
+<!-- ================= MEAL GENERATOR ================= -->
+
+<div class="card" id="meal">
+
+<h2>
+Meal Generator
+</h2>
+
+<p>
+Generate personalised meal ideas.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Ingredients Available</label>
+<textarea id="mealIngredients"></textarea>
+</div>
+
+<div class="input-group">
+<label>Calories Target</label>
+<input type="number" id="mealCalories">
+</div>
+
+<div class="input-group">
+<label>Cooking Time (minutes)</label>
+<input type="number" id="mealTime">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateMeal()">
+
+Generate Recipe
+
+</button>
+
+<div class="result" id="mealResult"></div>
+
+</div>
+
+<!-- ================= HEALTHY ================= -->
+
+<div class="card" id="healthy">
+
+<h2>
+Healthy Recipe Generator
+</h2>
+
+<p>
+Generate healthier recipe plans.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Diet Type</label>
+
+<select id="healthyDiet">
+
+<option>Balanced</option>
+<option>Vegetarian</option>
+<option>Vegan</option>
+<option>Low Carb</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+<label>Main Ingredient</label>
+<input type="text" id="healthyIngredient">
+</div>
+
+<div class="input-group">
+<label>Calories Target</label>
+<input type="number" id="healthyCalories">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateHealthy()">
+
+Generate Recipe
+
+</button>
+
+<div class="result" id="healthyResult"></div>
+
+</div>
+
+<!-- ================= HIGH PROTEIN ================= -->
+
+<div class="card" id="highprotein">
+
+<h2>
+High Protein Recipe Generator
+</h2>
+
+<p>
+Generate high-protein meal ideas.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Protein Goal (g)</label>
+<input type="number" id="proteinGoal">
+</div>
+
+<div class="input-group">
+<label>Main Ingredient</label>
+<input type="text" id="proteinIngredient">
+</div>
+
+<div class="input-group">
+<label>Meals Per Day</label>
+<input type="number" id="proteinMeals">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateProtein()">
+
+Generate Recipe
+
+</button>
+
+<div class="result" id="proteinResult"></div>
+
+</div>
+
+<!-- ================= QUICK MEALS ================= -->
+
+<div class="card" id="quick">
+
+<h2>
+Quick Meal Generator
+</h2>
+
+<p>
+Generate fast and simple recipes.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Available Ingredients</label>
+<textarea id="quickIngredients"></textarea>
+</div>
+
+<div class="input-group">
+<label>Maximum Cooking Time</label>
+<input type="number" id="quickTime">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateQuick()">
+
+Generate Recipe
+
+</button>
+
+<div class="result" id="quickResult"></div>
+
+</div>
+
+<!-- ================= BUDGET MEALS ================= -->
+
+<div class="card" id="budget">
+
+<h2>
+Budget Meal Generator
+</h2>
+
+<p>
+Generate affordable recipe ideas.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Budget (£)</label>
+<input type="number" id="budgetMoney">
+</div>
+
+<div class="input-group">
+<label>Ingredients</label>
+<textarea id="budgetIngredients"></textarea>
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateBudgetMeal()">
+
+Generate Recipe
+
+</button>
+
+<div class="result" id="budgetResult"></div>
+
+</div>
+
+<!-- ================= DESSERT ================= -->
+
+<div class="card" id="dessert">
+
+<h2>
+Dessert Generator
+</h2>
+
+<p>
+Generate dessert ideas based on preferences.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Flavour Preference</label>
+<input type="text" id="dessertFlavor">
+</div>
+
+<div class="input-group">
+<label>Main Ingredient</label>
+<input type="text" id="dessertIngredient">
+</div>
+
+<div class="input-group">
+<label>Difficulty</label>
+
+<select id="dessertDifficulty">
+
+<option>Easy</option>
+<option>Medium</option>
+<option>Advanced</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateDessert()">
+
+Generate Recipe
+
+</button>
+
+<div class="result" id="dessertResult"></div>
+
+</div>
+
+</section>
+
+<script>
+
+/* ================= MEAL ================= */
+
+function generateMeal(){
+
+let ingredients =
+document.getElementById("mealIngredients").value;
+
+let calories =
+document.getElementById("mealCalories").value;
+
+let result =
+document.getElementById("mealResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Recipe Generated</strong>
+
+<br><br>
+
+Suggested recipe:
+Chicken rice bowl
+with roasted vegetables.
+
+<br><br>
+
+Estimated calories:
+<strong>${calories}</strong>
+
+<br><br>
+
+Main ingredients used:
+<strong>${ingredients}</strong>
+`;
+
+}
+
+/* ================= HEALTHY ================= */
+
+function generateHealthy(){
+
+let diet =
+document.getElementById("healthyDiet").value;
+
+let ingredient =
+document.getElementById("healthyIngredient").value;
+
+let result =
+document.getElementById("healthyResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Healthy Recipe Generated</strong>
+
+<br><br>
+
+Diet type:
+<strong>${diet}</strong>
+
+<br><br>
+
+Suggested recipe:
+Grilled ${ingredient}
+with vegetables and quinoa.
+`;
+
+}
+
+/* ================= PROTEIN ================= */
+
+function generateProtein(){
+
+let goal =
+document.getElementById("proteinGoal").value;
+
+let ingredient =
+document.getElementById("proteinIngredient").value;
+
+let result =
+document.getElementById("proteinResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>High Protein Recipe Generated</strong>
+
+<br><br>
+
+Protein goal:
+<strong>${goal}g</strong>
+
+<br><br>
+
+Suggested meal:
+${ingredient}
+with rice,
+greens,
+and high-protein sauce.
+`;
+
+}
+
+/* ================= QUICK ================= */
+
+function generateQuick(){
+
+let ingredients =
+document.getElementById("quickIngredients").value;
+
+let time =
+document.getElementById("quickTime").value;
+
+let result =
+document.getElementById("quickResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Quick Recipe Generated</strong>
+
+<br><br>
+
+Cooking time:
+<strong>${time} minutes</strong>
+
+<br><br>
+
+Suggested recipe:
+Quick pasta bowl
+using:
+<strong>${ingredients}</strong>
+`;
+
+}
+
+/* ================= BUDGET ================= */
+
+function generateBudgetMeal(){
+
+let budget =
+document.getElementById("budgetMoney").value;
+
+let ingredients =
+document.getElementById("budgetIngredients").value;
+
+let result =
+document.getElementById("budgetResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Budget Recipe Generated</strong>
+
+<br><br>
+
+Budget:
+<strong>£${budget}</strong>
+
+<br><br>
+
+Suggested meal:
+Rice,
+beans,
+vegetables,
+and seasoned chicken
+using:
+<strong>${ingredients}</strong>
+`;
+
+}
+
+/* ================= DESSERT ================= */
+
+function generateDessert(){
+
+let flavor =
+document.getElementById("dessertFlavor").value;
+
+let ingredient =
+document.getElementById("dessertIngredient").value;
+
+let difficulty =
+document.getElementById("dessertDifficulty").value;
+
+let result =
+document.getElementById("dessertResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Dessert Generated</strong>
+
+<br><br>
+
+Suggested dessert:
+${flavor} cheesecake
+with ${ingredient} topping.
+
+<br><br>
+
+Difficulty:
+<strong>${difficulty}</strong>
+`;
+
+}
+
+</script>
+
+</body>
+</html>
