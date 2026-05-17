@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lifesaver — Health & Fitness</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#F8F4EE;
+    color:#123B63;
+    font-family:'Inter', sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 8%;
+
+    background:rgba(248,244,238,0.95);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(18,59,99,0.08);
+
+    z-index:1000;
+}
+
+.logo{
+    font-family:'Playfair Display', serif;
+    font-size:2rem;
+    font-weight:700;
+}
+
+.home-btn{
+    text-decoration:none;
+
+    background:white;
+
+    color:#123B63;
+
+    padding:12px 22px;
+
+    border-radius:16px;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    padding:90px 8% 45px;
+}
+
+.header h1{
+    font-family:'Playfair Display', serif;
+    font-size:5rem;
+    margin-bottom:16px;
+}
+
+.header p{
+    max-width:850px;
+    line-height:1.9;
+    font-size:1.08rem;
+}
+
+/* ================= BUTTONS ================= */
+
+.top-buttons{
+    padding:0 8% 55px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.top-buttons button{
+    border:none;
+
+    background:white;
+
+    color:#123B63;
+
+    padding:16px 24px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.06);
+
+    transition:0.3s;
+}
+
+.top-buttons button:hover{
+    transform:translateY(-4px);
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:0 8% 100px;
+}
+
+.card{
+    background:white;
+
+    border-radius:36px;
+
+    padding:40px;
+
+    margin-bottom:40px;
+
+    box-shadow:
+    0 12px 40px rgba(0,0,0,0.06);
+}
+
+.card h2{
+    font-family:'Playfair Display', serif;
+    font-size:2.4rem;
+    margin-bottom:12px;
+}
+
+.card p{
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+/* ================= INPUTS ================= */
+
+.input-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#F5F2ED;
+
+    font-size:1rem;
+
+    color:#123B63;
+}
+
+/* ================= BUTTON ================= */
+
+.generate-btn{
+    border:none;
+
+    background:#123B63;
+
+    color:white;
+
+    padding:16px 28px;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+}
+
+/* ================= RESULT ================= */
+
+.result{
+    margin-top:28px;
+
+    background:#F7F4EF;
+
+    border-radius:24px;
+
+    padding:28px;
+
+    line-height:1.9;
+
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<div class="logo">
+Lifesaver
+</div>
+
+<a href="index.html" class="home-btn">
+Home
+</a>
+
+</nav>
+
+<!-- ================= HEADER ================= -->
+
+<section class="header">
+
+<h1>
+Health & Fitness
+</h1>
+
+<p>
+AI-powered health planning,
+fitness systems,
+nutrition forecasting,
+wellness routines,
+and performance optimisation.
+</p>
+
+</section>
+
+<!-- ================= BUTTONS ================= -->
+
+<div class="top-buttons">
+
+<button onclick="document.getElementById('diet').scrollIntoView()">
+Diet Plan
+</button>
+
+<button onclick="document.getElementById('fitness').scrollIntoView()">
+Fitness Plan
+</button>
+
+<button onclick="document.getElementById('weightloss').scrollIntoView()">
+Weight Loss Plan
+</button>
+
+<button onclick="document.getElementById('muscle').scrollIntoView()">
+Muscle Gain Plan
+</button>
+
+<button onclick="document.getElementById('running').scrollIntoView()">
+Running Plan
+</button>
+
+<button onclick="document.getElementById('sleep').scrollIntoView()">
+Sleep Optimiser
+</button>
+
+</div>
+
+<!-- ================= MAIN SECTION ================= -->
+
+<section class="section">
+
+<!-- ================= DIET ================= -->
+
+<div class="card" id="diet">
+
+<h2>
+Diet Plan
+</h2>
+
+<p>
+Generate a personalised nutrition plan.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Current Weight (kg)</label>
+<input type="number" id="dietWeight">
+</div>
+
+<div class="input-group">
+<label>Weight Goal (kg)</label>
+<input type="number" id="dietGoal">
+</div>
+
+<div class="input-group">
+<label>Meals Per Day</label>
+<input type="number" id="dietMeals">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateDiet()">
+
+Generate Plan
+
+</button>
+
+<div class="result" id="dietResult"></div>
+
+</div>
+
+<!-- ================= FITNESS ================= -->
+
+<div class="card" id="fitness">
+
+<h2>
+Fitness Plan
+</h2>
+
+<p>
+Generate a personalised weekly workout structure.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Workout Days Per Week</label>
+<input type="number" id="fitnessDays">
+</div>
+
+<div class="input-group">
+<label>Workout Time (minutes)</label>
+<input type="number" id="fitnessTime">
+</div>
+
+<div class="input-group">
+<label>Main Goal</label>
+
+<select id="fitnessGoal">
+
+<option>Fat Loss</option>
+<option>Strength</option>
+<option>Fitness</option>
+<option>Muscle Gain</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateFitness()">
+
+Generate Plan
+
+</button>
+
+<div class="result" id="fitnessResult"></div>
+
+</div>
+
+<!-- ================= WEIGHT LOSS ================= -->
+
+<div class="card" id="weightloss">
+
+<h2>
+Weight Loss Plan
+</h2>
+
+<p>
+Estimate calorie targets and weight loss timelines.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Current Weight (kg)</label>
+<input type="number" id="lossWeight">
+</div>
+
+<div class="input-group">
+<label>Goal Weight (kg)</label>
+<input type="number" id="lossGoal">
+</div>
+
+<div class="input-group">
+<label>Daily Steps</label>
+<input type="number" id="lossSteps">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateWeightLoss()">
+
+Generate Plan
+
+</button>
+
+<div class="result" id="weightLossResult"></div>
+
+</div>
+
+<!-- ================= MUSCLE ================= -->
+
+<div class="card" id="muscle">
+
+<h2>
+Muscle Gain Plan
+</h2>
+
+<p>
+Generate muscle-building recommendations.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Current Weight (kg)</label>
+<input type="number" id="muscleWeight">
+</div>
+
+<div class="input-group">
+<label>Workout Days</label>
+<input type="number" id="muscleDays">
+</div>
+
+<div class="input-group">
+<label>Protein Per Day (g)</label>
+<input type="number" id="muscleProtein">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateMuscle()">
+
+Generate Plan
+
+</button>
+
+<div class="result" id="muscleResult"></div>
+
+</div>
+
+<!-- ================= RUNNING ================= -->
+
+<div class="card" id="running">
+
+<h2>
+Running Plan
+</h2>
+
+<p>
+Generate a weekly running improvement plan.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Current Distance (km)</label>
+<input type="number" id="runDistance">
+</div>
+
+<div class="input-group">
+<label>Target Distance (km)</label>
+<input type="number" id="runGoal">
+</div>
+
+<div class="input-group">
+<label>Running Days</label>
+<input type="number" id="runDays">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateRunning()">
+
+Generate Plan
+
+</button>
+
+<div class="result" id="runningResult"></div>
+
+</div>
+
+<!-- ================= SLEEP ================= -->
+
+<div class="card" id="sleep">
+
+<h2>
+Sleep Optimiser
+</h2>
+
+<p>
+Generate healthier sleep recommendations.
+</p>
+
+<div class="input-grid">
+
+<div class="input-group">
+<label>Current Sleep Hours</label>
+<input type="number" id="sleepHours">
+</div>
+
+<div class="input-group">
+<label>Wake Up Time</label>
+<input type="text" id="wakeTime">
+</div>
+
+<div class="input-group">
+<label>Screen Time Before Bed (minutes)</label>
+<input type="number" id="screenTime">
+</div>
+
+</div>
+
+<button class="generate-btn"
+onclick="generateSleep()">
+
+Generate Plan
+
+</button>
+
+<div class="result" id="sleepResult"></div>
+
+</div>
+
+</section>
+
+<script>
+
+/* ================= DIET ================= */
+
+function generateDiet(){
+
+let weight =
+document.getElementById("dietWeight").value;
+
+let goal =
+document.getElementById("dietGoal").value;
+
+let meals =
+document.getElementById("dietMeals").value;
+
+let result =
+document.getElementById("dietResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Diet Plan Generated</strong>
+
+<br><br>
+
+Suggested calories:
+<strong>2100 daily</strong>
+
+<br><br>
+
+Meals per day:
+<strong>${meals}</strong>
+
+<br><br>
+
+Suggested focus:
+High protein,
+whole foods,
+consistent hydration.
+`;
+
+}
+
+/* ================= FITNESS ================= */
+
+function generateFitness(){
+
+let days =
+document.getElementById("fitnessDays").value;
+
+let time =
+document.getElementById("fitnessTime").value;
+
+let goal =
+document.getElementById("fitnessGoal").value;
+
+let result =
+document.getElementById("fitnessResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Fitness Plan Generated</strong>
+
+<br><br>
+
+Workout goal:
+<strong>${goal}</strong>
+
+<br><br>
+
+Training:
+<strong>${days} days weekly</strong>
+
+<br><br>
+
+Workout duration:
+<strong>${time} minutes</strong>
+`;
+
+}
+
+/* ================= WEIGHT LOSS ================= */
+
+function generateWeightLoss(){
+
+let current =
+document.getElementById("lossWeight").value;
+
+let goal =
+document.getElementById("lossGoal").value;
+
+let steps =
+document.getElementById("lossSteps").value;
+
+let result =
+document.getElementById("weightLossResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Weight Loss Plan Generated</strong>
+
+<br><br>
+
+Recommended calories:
+<strong>1900 daily</strong>
+
+<br><br>
+
+Daily steps:
+<strong>${steps}</strong>
+
+<br><br>
+
+Estimated target timeline:
+<strong>3-5 months</strong>
+`;
+
+}
+
+/* ================= MUSCLE ================= */
+
+function generateMuscle(){
+
+let weight =
+document.getElementById("muscleWeight").value;
+
+let days =
+document.getElementById("muscleDays").value;
+
+let protein =
+document.getElementById("muscleProtein").value;
+
+let result =
+document.getElementById("muscleResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Muscle Gain Plan Generated</strong>
+
+<br><br>
+
+Training:
+<strong>${days} days weekly</strong>
+
+<br><br>
+
+Protein target:
+<strong>${protein}g daily</strong>
+
+<br><br>
+
+Suggested focus:
+Progressive overload
+and recovery optimisation.
+`;
+
+}
+
+/* ================= RUNNING ================= */
+
+function generateRunning(){
+
+let distance =
+document.getElementById("runDistance").value;
+
+let goal =
+document.getElementById("runGoal").value;
+
+let days =
+document.getElementById("runDays").value;
+
+let result =
+document.getElementById("runningResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Running Plan Generated</strong>
+
+<br><br>
+
+Target distance:
+<strong>${goal} km</strong>
+
+<br><br>
+
+Training frequency:
+<strong>${days} days weekly</strong>
+
+<br><br>
+
+Suggested strategy:
+Increase distance gradually
+with recovery runs.
+`;
+
+}
+
+/* ================= SLEEP ================= */
+
+function generateSleep(){
+
+let sleep =
+document.getElementById("sleepHours").value;
+
+let wake =
+document.getElementById("wakeTime").value;
+
+let screen =
+document.getElementById("screenTime").value;
+
+let result =
+document.getElementById("sleepResult");
+
+result.style.display = "block";
+
+result.innerHTML =
+`
+<strong>Sleep Plan Generated</strong>
+
+<br><br>
+
+Recommended sleep:
+<strong>8 hours nightly</strong>
+
+<br><br>
+
+Suggested bedtime:
+<strong>10:30 PM</strong>
+
+<br><br>
+
+Suggested strategy:
+Reduce screen exposure
+before sleep
+and maintain consistency.
+`;
+
+}
+
+</script>
+
+</body>
+</html>
